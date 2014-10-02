@@ -1,0 +1,14 @@
+
+
+isp 6 pin:
+1. MISO 2. VCC
+3. SCK  4. MOSI
+5. RST  5. GND
+
+isp 10 pin:
+1. MOSI 2. VCC
+3. NC   4. GND
+5. RST  6. GND
+7. SCK  8. GND
+9. MISO 10. GND
+
