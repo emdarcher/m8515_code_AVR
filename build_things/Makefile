@@ -5,7 +5,7 @@
 ##########------------------------------------------------------##########
 
 MCU   = atmega8515 
-F_CPU = 8000000
+F_CPU = 16000000
 BAUD = 9600
 ## Also try BAUD = 19200 or 38400 if you're feeling lucky.
 
@@ -22,7 +22,7 @@ LOCAL_SOURCE =
 # EXTRA_SOURCE_FILES = USART.c
 EXTRA_SOURCE_DIR = ./libs/
 #EXTRA_SOURCE_FILES = USART.c
-EXTRA_SOURCE_FILES = uart.c uart.h
+#EXTRA_SOURCE_FILES = uart.c uart.h
 
 #uart lib flags
 UART_LIB_FLAGS = -DUART_RX0_BUFFER_SIZE=4 -DUART_TX0_BUFFER_SIZE=4
@@ -33,9 +33,11 @@ UART_LIB_FLAGS = -DUART_RX0_BUFFER_SIZE=4 -DUART_TX0_BUFFER_SIZE=4
 ##########        (Can override.  See bottom of file.)          ##########
 ##########------------------------------------------------------##########
 
-PROGRAMMER_TYPE = stk500v2
+PROGRAMMER_TYPE = usbtiny
+#PROGRAMMER_TYPE = stk500v2
 # extra arguments to avrdude: baud rate, chip type, -F flag, etc.
-PROGRAMMER_ARGS = -P /dev/ttyUSB0 	
+PROGRAMMER_ARGS = 
+#PROGRAMMER_ARGS = -P /dev/ttyUSB0 	
 
 ##########------------------------------------------------------##########
 ##########                   Makefile Magic!                    ##########
@@ -54,7 +56,7 @@ AVRSIZE = avr-size
 AVRDUDE = avrdude
 
 ## Compilation options, type man avr-gcc if you're curious.
-CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU)UL -DBAUD=$(BAUD) $(UART_LIB_FLAGS) -Os -I. -I$(EXTRA_SOURCE_DIR)
+CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU)UL -DBAUD=$(BAUD) -Os -I. -I$(EXTRA_SOURCE_DIR)
 #CFLAGS += $(UART_LIB_FLAGS)
 CFLAGS += -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums 
 CFLAGS += -Wall -Wstrict-prototypes
