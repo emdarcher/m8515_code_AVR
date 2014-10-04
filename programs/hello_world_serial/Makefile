@@ -25,7 +25,7 @@ EXTRA_SOURCE_DIR = ./libs/
 EXTRA_SOURCE_FILES = uart.c 
 
 #uart lib flags
-UART_LIB_FLAGS = -DUART_RX0_BUFFER_SIZE=32 -DUART_TX0_BUFFER_SIZE=32
+UART_LIB_FLAGS = -DUART_RX0_BUFFER_SIZE=16 -DUART_TX0_BUFFER_SIZE=16
 
 ##########------------------------------------------------------##########
 ##########                 Programmer Defaults                  ##########
@@ -56,8 +56,9 @@ AVRSIZE = avr-size
 AVRDUDE = avrdude
 
 ## Compilation options, type man avr-gcc if you're curious.
-CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU)UL -DBAUD=$(BAUD) -Os -I. -I$(EXTRA_SOURCE_DIR)
-#CFLAGS += $(UART_LIB_FLAGS)
+CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU)UL -DBAUD=$(BAUD) 
+CFLAGS += $(UART_LIB_FLAGS)
+CFLAGS += -Os -I. -I$(EXTRA_SOURCE_DIR)
 CFLAGS += -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums 
 CFLAGS += -Wall -Wstrict-prototypes
 CFLAGS += -g -ggdb
